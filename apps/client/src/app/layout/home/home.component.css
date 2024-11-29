@@ -1,0 +1,7 @@
+/* Ensure the dropdown appears aligned and well-styled */
+#dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+  }
+  

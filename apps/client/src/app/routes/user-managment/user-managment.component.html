@@ -1,0 +1,165 @@
+<div class="container-fluid pe-5">
+  <div class="d-flex justify-content-end gap-5 align-items-center pt-4">
+    <div class="flex justify-end">
+      <button
+        (click)="discard()"
+        type="button"
+        class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+      >
+        Discard
+      </button>
+      <button
+        class="text-white bg-[#0bbac7] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-1.5 text-center inline-flex items-center me-2 mb-2"
+        [disabled]="form.invalid"
+        (click)="submitForm()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 mr-2"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+          ></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        Save
+      </button>
+    </div>
+  </div>
+  <div class="-mx-3 flex flex-wrap" [formGroup]="form">
+    <div class="w-full px-3 sm:w-1/2">
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+          for="name"
+          >Product Name</label
+        >
+        <input
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          pInputText
+          id="name"
+          formControlName="name"
+          aria-describedby="name-help"
+          [ngClass]="{
+            'is-invalid': form.get('name')?.touched && form.get('name')?.invalid
+          }"
+        />
+
+        @if( form.get('name')?.touched && form.get('name')?.invalid){
+        <small id="name-help" class="invalid-feedback">
+          @if(form.get('name')?.errors?.['required']){
+
+          <span>name is required.</span>
+          }@else if(form.get('name')?.errors?.['minlength']){
+
+          <span>name must be at least 1 character long.</span>
+          }
+        </small>
+        }
+      </div>
+    </div>
+    <div class="w-full px-3 sm:w-1/2">
+      <label class="mb-3 block text-base font-medium text-[#07074D]" for="code"
+        >Code</label
+      >
+      <input
+        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        type="number"
+        pInputText
+        id="code"
+        min="0"
+        formControlName="code"
+        aria-describedby="code-help"
+        [ngClass]="{
+          'is-invalid': form.get('code')?.touched && form.get('code')?.invalid
+        }"
+      />
+      @if(form.get('code')?.touched && form.get('code')?.invalid){
+      <small id="code-help" class="invalid-feedback">
+        @if(form.get('code')?.errors?.['required']){
+
+        <span>code is required.</span>
+        }@else if(form.get('code')?.errors?.['minlength']){
+
+        <span>code must be at least 1 character long.</span>
+        }
+      </small>
+
+      }
+    </div>
+    <div class="w-full px-3 sm:w-1/2">
+      <label
+        class="mb-3 block text-base font-medium text-[#07074D]"
+        for="startName"
+        >Category Name</label
+      >
+      <input
+        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        type="text"
+        pInputText
+        id="startName"
+        min="0"
+        formControlName="startName"
+        aria-describedby="startName-help"
+        [ngClass]="{
+          'is-invalid':
+            form.get('startName')?.touched && form.get('startName')?.invalid
+        }"
+      />
+      @if(form.get('startName')?.touched && form.get('startName')?.invalid){
+      <small id="startName-help" class="invalid-feedback">
+        @if(form.get('startName')?.errors?.['required']){
+
+        <span>startName is required.</span>
+        }@else if(form.get('startName')?.errors?.['minlength']){
+
+        <span>startName must be at least 1 character long.</span>
+        }
+      </small>
+
+      }
+    </div>
+    <div class="w-full px-3 sm:w-1/2">
+      <label
+        class="mb-3 block text-base font-medium text-[#07074D]"
+        for="address"
+        >Price</label
+      >
+      <input
+        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        pInputText
+        id="address"
+        formControlName="address"
+        aria-describedby="address-help"
+        [ngClass]="{
+          'is-invalid':
+            form.get('address')?.touched && form.get('address')?.invalid
+        }"
+      />
+
+      @if( form.get('address')?.touched && form.get('address')?.invalid){
+
+      <small
+        id="address-help"
+        class="text-red-600 text-sm mt-1 bg-red-100 px-2 py-1 rounded"
+      >
+        @if(form.get('address')?.errors?.['required']){
+
+        <span>address is required.</span>
+        }@else if(form.get('address')?.errors?.['minlength']){
+
+        <span>address must be at least 5 character long.</span>
+        }
+      </small>
+
+      }
+    </div>
+  </div>
+</div>

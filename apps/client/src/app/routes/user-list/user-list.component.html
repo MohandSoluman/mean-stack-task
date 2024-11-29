@@ -1,0 +1,143 @@
+<p-toast />
+
+<p-table
+  #dt1
+  [value]="filteredUsers()"
+  [globalFilterFields]="['code', 'name', 'startName']"
+  selectionMode="single"
+  dataKey="id"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rows]="10"
+  [paginator]="true"
+  stateStorage="session"
+  stateKey="statedemo-session"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-between bg-white">
+      <p-iconField iconPosition="right">
+        <input
+          pInputText
+          type="text"
+          placeholder=" Search With Name"
+          [(ngModel)]="searchTerm"
+          (input)="onSearchChange($event)"
+        />
+        <p-inputIcon>
+          <i class="pi pi-search"></i>
+        </p-inputIcon>
+      </p-iconField>
+
+      <div
+        class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
+      >
+        <button
+          class="flex items-center justify-center text-white bg-[#0bbac7] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-12 py-2.5 text-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2 gap-2"
+          routerLink="/user-management"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-white"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+            <line
+              x1="12"
+              y1="8"
+              x2="12"
+              y2="16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <line
+              x1="8"
+              y1="12"
+              x2="16"
+              y2="12"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          Add New
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="code" style="width: 20%">
+        Code <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name" style="width: 20%">
+        product Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="startName" style="width: 20%">
+        Category <p-sortIcon field="startName"></p-sortIcon>
+      </th>
+
+      <th style="width: 20%">Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.code }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.startName }}</td>
+      <td>
+        <div class="px-4 py-2 flex space-x-2">
+          <button
+            class="flex p-2.5 bg-cyan-500 rounded-xl hover:rounded-3xl hover:bg-yellow-600 transition-all duration-300 text-white"
+            [routerLink]="['/user-management', user.id]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3 w-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              />
+            </svg>
+          </button>
+          <button
+            class="flex p-2.5 bg-red-500 rounded-xl hover:rounded-3xl hover:bg-red-600 transition-all duration-300 text-white"
+            (click)="onDeleteUser(user.id)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3 w-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 2L6 4M6 4L4 4M6 4H14M14 4H18M6 4L6 2M6 2L6 6M18 2L18 6M18 6L18 2M4 6H20L18 22H6L4 6M10 10V16M14 10V16"
+              />
+            </svg>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,2 +1,12 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<main class="main">
+  <div class="content">
+    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+      <app-home></app-home>
+      <main class="p-4 md:ml-64 h-auto pt-20">
+        <div class="rounded-lg dark:border-gray-600 h-96 mb-4">
+          <router-outlet />
+        </div>
+      </main>
+    </div>
+  </div>
+</main>
